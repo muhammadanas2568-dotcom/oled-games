@@ -1,0 +1,70 @@
+# Catch Stars : กดเพื่อกลับทิศ รับดาว (วงกลม) หลบระเบิด (สี่เหลี่ยม) พลาดดาว 3 ครั้งแพ้
+title Catch Stars
+fps 30
+init
+p = 54
+r = 1
+l = 3
+i = 0
+while i < 4
+  m[i] = rnd(120)
+  m[i + 5] = 0 - rnd(80)
+  m[i + 10] = rnd(3) / 2
+  i += 1
+end
+frame
+cls
+s = 2 + score / 15
+if s > 5
+  s = 5
+end
+if btn
+  r = 0 - r
+end
+p += r * 3
+if p < 0
+  p = 0
+  r = 1
+end
+if p > 108
+  p = 108
+  r = -1
+end
+fill p, 60, 20, 4
+i = 0
+while i < 4
+  m[i + 5] += s
+  y = m[i + 5]
+  x = m[i]
+  if m[i + 10] == 0
+    disc x + 3, y + 3, 3
+  else
+    rect x, y, 7, 7
+    line x, y, x + 6, y + 6
+  end
+  if y + 7 >= 60 && y < 64 && x + 7 > p && x < p + 20
+    if m[i + 10] == 0
+      score += 1
+      m[i + 5] = 0 - rnd(40) - 8
+      m[i] = rnd(120)
+      m[i + 10] = rnd(3) / 2
+    else
+      over
+    end
+  end
+  if y > 64
+    if m[i + 10] == 0
+      l -= 1
+      if l <= 0
+        over
+      end
+    end
+    m[i + 5] = 0 - rnd(40) - 8
+    m[i] = rnd(120)
+    m[i + 10] = rnd(3) / 2
+  end
+  i += 1
+end
+num 0, 0, score
+text 100, 0, "L"
+num 108, 0, l
