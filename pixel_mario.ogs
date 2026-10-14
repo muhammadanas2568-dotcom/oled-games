@@ -1,0 +1,83 @@
+# Pixel Mario : วิ่งอัตโนมัติ กดปุ่มเพื่อกระโดดข้ามบล็อก
+title Pixel Mario
+fps 30
+
+init
+py = 42
+vy = 0
+ox = 128
+speed = 2
+score = 0
+wait = 25
+dead = 0
+jumped = 0
+
+frame
+cls
+
+if dead == 0
+
+  wait -= 1
+
+  if btn && py >= 42
+    vy = -6
+    jumped = 1
+  end
+
+  vy += 0.45
+  py += vy
+
+  if py > 42
+    py = 42
+    vy = 0
+  end
+
+  ox -= speed
+
+  if ox < -8
+    ox = 128 + rnd(30)
+    score += 1
+    wait = 25 + rnd(25)
+    speed = 2 + score / 8
+    if speed > 4
+      speed = 4
+    end
+  end
+
+  # พื้น
+  line 0, 53, 127, 53
+  line 0, 61, 127, 61
+
+  # บล็อกพื้นตกแต่ง
+  rect 8, 56, 5, 5
+  rect 34, 56, 5, 5
+  rect 60, 56, 5, 5
+  rect 86, 56, 5, 5
+  rect 112, 56, 5, 5
+
+  # ตัวละครพิกเซลแบบต้นฉบับ
+  fill 20, py, 8, 7
+  rect 21, py + 7, 2, 3
+  rect 25, py + 7, 2, 3
+  line 22, py + 2, 23, py + 2
+  line 26, py + 2, 27, py + 2
+
+  # สิ่งกีดขวาง
+  fill ox, 45, 7, 8
+  line ox + 1, 47, ox + 5, 47
+  line ox + 1, 50, ox + 5, 50
+
+  # ตรวจการชน
+  if ox < 28 && ox + 7 > 20 && py > 34
+    dead = 1
+  end
+
+  text 0, 0, "SCORE"
+  num 36, 0, score
+
+else
+  text 28, 14, "GAME OVER"
+  text 16, 30, "SCORE"
+  num 56, 30, score
+  text 8, 48, "RESET TO PLAY"
+end
