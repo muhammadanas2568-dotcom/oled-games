@@ -1,0 +1,155 @@
+# Pixel Run : วิ่งสไตล์มาริโอ้ กดสั้น=กระโดดเตี้ย กดค้าง=กระโดดสูง เหยียบศัตรู/เก็บเหรียญ ข้ามท่อและหลุม
+title Pixel Run
+fps 30
+init
+p = 48
+c = 1
+m[40] = 30
+m[41] = 95
+i = 0
+while i < 4
+  m[i] = -50
+  i += 1
+end
+frame
+cls
+s = 2 + score / 20
+if s > 4
+  s = 4
+end
+d += s
+fill 0, 56, 128, 8
+col 0
+line 0, 60, 127, 60
+k = 0 - d % 16
+while k < 128
+  line k, 56, k, 59
+  line k + 8, 60, k + 8, 63
+  k += 16
+end
+col 1
+if tick % 3 == 0
+  m[40] -= 1
+  m[41] -= 1
+end
+if m[40] < -12
+  m[40] = 128 + rnd(30)
+end
+if m[41] < -12
+  m[41] = 128 + rnd(30)
+end
+line m[40], 12, m[40] + 10, 12
+line m[40] + 3, 10, m[40] + 8, 10
+line m[41], 20, m[41] + 10, 20
+line m[41] + 3, 18, m[41] + 8, 18
+if btn
+  j = 5
+end
+if j > 0
+  j -= 1
+  if c == 1
+    v = -6
+    c = 0
+    j = 0
+  end
+end
+h = 56
+i = 0
+while i < 4
+  m[i] -= s
+  if m[i + 4] == 1 && m[i + 8] > 0
+    m[i] -= 1
+  end
+  if m[i] < -30
+    q = m[(i + 3) % 4]
+    if q < 100
+      q = 100
+    end
+    m[i] = q + 80 + rnd(40)
+    k = rnd(10)
+    m[i + 4] = 0
+    m[i + 8] = 12 + rnd(3) * 5
+    if k > 3
+      m[i + 4] = 1
+      m[i + 8] = 1
+    end
+    if k > 6
+      m[i + 4] = 2
+      m[i + 8] = 22 + rnd(2) * 6
+    end
+    m[i + 12] = rnd(2)
+    score += 1
+  end
+  o = m[i]
+  q = m[i + 4]
+  w = m[i + 8]
+  if q == 0
+    k = 56 - w
+    fill o, k, 12, w
+    fill o - 1, k, 14, 4
+    col 0
+    line o + 3, k + 5, o + 3, 55
+    col 1
+    if o < 28 && o + 12 > 20
+      if p + 8 <= k + 4
+        if h > k
+          h = k
+        end
+      else
+        over
+      end
+    end
+  end
+  if q == 1 && w > 0
+    spr o, 48, "3C7EDBFF7E3C66C3"
+    if o < 28 && o + 8 > 20 && p + 8 > 48
+      if v > 0 && p + 8 <= 54
+        m[i + 8] = 0
+        v = -5
+        score += 3
+      else
+        over
+      end
+    end
+  end
+  if q == 2
+    col 0
+    fill o, 56, w, 8
+    col 1
+    if o < 24 && o + w > 24
+      h = 99
+    end
+  end
+  if m[i + 12] == 1
+    disc o + 4, 22, 3
+    if o < 27 && o + 8 > 20 && p < 25 && p + 8 > 19
+      m[i + 12] = 0
+      score += 2
+    end
+  end
+  i += 1
+end
+if v >= 0 || held == 0 || tick % 2 == 0 || v >= -1
+  v += 1
+end
+p += v
+if v >= 0 && p + 8 >= h
+  p = h - 8
+  v = 0
+  c = 1
+else
+  c = 0
+end
+if h == 99 && p > 50
+  over
+end
+if c == 0
+  spr 20, p, "3C7F35BE7FDF6663"
+else
+  if tick % 8 < 4
+    spr 20, p, "3C7F353E7EDB3663"
+  else
+    spr 20, p, "3C7F353E7E7E3C3C"
+  end
+end
+num 0, 0, score

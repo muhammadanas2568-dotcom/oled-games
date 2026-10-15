@@ -1,0 +1,124 @@
+# Pogo Climb : ปีนแพลตฟอร์มให้สูงที่สุด กดค้าง=เอียงขวา ปล่อย=เอียงซ้าย (ทะลุขอบจอได้) แผ่นประ=พัง กล่อง=สปริงกระโดดสูง
+title Pogo Climb
+fps 30
+init
+x = 60
+y = 40
+v = -9
+m[0] = 52
+m[8] = 58
+m[24] = 1
+m[32] = 52
+i = 1
+while i < 7
+  m[i + 8] = m[i + 7] - 19 - rnd(7)
+  m[i] = (m[i - 1] + 84 + rnd(49)) % 108
+  m[i + 24] = 1
+  m[i + 32] = m[i]
+  i += 1
+end
+u = m[14]
+a = m[6]
+frame
+cls
+if held
+  x += 3
+else
+  x -= 3
+end
+if x < -8
+  x = 128
+end
+if x > 128
+  x = -8
+end
+v += 1
+if v > 8
+  v = 8
+end
+n = y + v
+e = 0
+if n < 24
+  e = 24 - n
+  n = 24
+end
+u += e
+z += e
+i = 0
+while i < 7
+  b = m[i + 8]
+  t = m[i + 16]
+  if v > 0 && t < 4 && y + 8 <= b + 2 && n + 8 >= b && x + 6 > m[i] && x + 2 < m[i] + 20
+    if t == 2
+      m[i + 16] = 4
+    else
+      n = b - 8
+      v = -9
+      if t == 3
+        v = -12
+      end
+    end
+  end
+  b += e
+  m[i + 8] = b
+  if t == 1
+    m[i] += m[i + 24]
+    if m[i] < 1 || m[i] > 107 || m[i] > m[i + 32] + 20 || m[i] < m[i + 32] - 20
+      m[i + 24] = 0 - m[i + 24]
+    end
+  end
+  if b > 66
+    g = 20 + rnd(8) + z / 250
+    if g > 32
+      g = 32
+    end
+    u -= g
+    b = u
+    m[i + 8] = b
+    m[i] = (a + 84 + rnd(49)) % 108
+    m[i + 32] = m[i]
+    a = m[i]
+    k = rnd(10)
+    t = 0
+    if k > 5
+      t = 1
+    end
+    if k > 7
+      t = 2
+    end
+    if k > 8
+      t = 3
+    end
+    m[i + 16] = t
+    m[i + 24] = 1
+  end
+  if t == 0
+    fill m[i], b, 20, 3
+  end
+  if t == 1
+    fill m[i], b, 20, 3
+    col 0
+    line m[i] + 3, b + 1, m[i] + 16, b + 1
+    col 1
+  end
+  if t == 2
+    fill m[i], b, 6, 3
+    fill m[i] + 14, b, 6, 3
+  end
+  if t == 3
+    fill m[i], b, 20, 3
+    rect m[i] + 7, b - 4, 6, 5
+  end
+  i += 1
+end
+y = n
+if y > 64
+  over
+end
+if v < 0
+  spr x, y, "3C7EDBFF7E3C1818"
+else
+  spr x, y, "3C7EDBFF7E246642"
+end
+score = z / 8
+num 0, 0, score
