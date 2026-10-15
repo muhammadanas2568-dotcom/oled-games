@@ -1,3 +1,0 @@
-# รูปแบบ:  ชื่อเกม|ชื่อไฟล์.ogs   (ชื่อเกมไม่เกิน 12 ตัวอักษร / ชื่อไฟล์ใช้ a-z 0-9 _ เท่านั้น)
-Reaction|reaction.ogs
-Catch Stars|catch.ogs
