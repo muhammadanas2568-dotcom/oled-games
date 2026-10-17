@@ -1,4 +1,0 @@
-Catch|catch.ogs
-pixel mario|pixel_run.ogs
-pogo|pogo.ogs
-reaction|reaction.ogs
