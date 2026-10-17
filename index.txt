@@ -1,0 +1,14 @@
+# Get Games index: title|file|keys (L R BTN) - default 465 = left 4, right 6, button 5
+Munch|munch.ch8
+Bounce|bounce.ch8
+Dodge|dodge.ch8
+Catch|catch.ch8
+Whack|whack.ch8
+Pong|pong.ch8
+Simon|simon.ch8
+Lander|lander.ch8
+Racer|racer.ch8
+Catch|catch.ogs
+pixel mario|pixel_run.ogs
+pogo|pogo.ogs
+reaction|reaction.ogs
