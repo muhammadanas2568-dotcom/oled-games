@@ -1,0 +1,43 @@
+title Star Dodge
+fps 25
+init
+p = 58
+x = 55
+y = 8
+i = 0
+while i < 4
+ m[i] = rnd(120)
+ m[i + 8] = 0 - rnd(50)
+ i += 1
+end
+frame
+cls
+if jx < 0
+ p -= 3
+end
+if jx > 0
+ p += 3
+end
+if p < 0
+ p = 0
+end
+if p > 120
+ p = 120
+end
+i = 0
+while i < 4
+ m[i + 8] += 2
+ if m[i + 8] > 64
+  m[i + 8] = 0 - rnd(35)
+  m[i] = rnd(120)
+  score += 1
+ end
+ fill m[i], m[i + 8], 4, 4
+ if m[i + 8] > 52 && m[i + 8] < 62 && m[i] > p - 3 && m[i] < p + 8
+  over
+ end
+ i += 1
+end
+fill p, 56, 7, 7
+text 0, 0, "DODGE"
+num 90, 0, score

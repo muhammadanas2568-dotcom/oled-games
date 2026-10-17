@@ -1,0 +1,41 @@
+title Solo Pong
+fps 25
+init
+p = 50
+x = 64
+y = 30
+vx = 2
+vy = 2
+frame
+cls
+if jx < 0
+ p -= 4
+end
+if jx > 0
+ p += 4
+end
+if p < 0
+ p = 0
+end
+if p > 104
+ p = 104
+end
+x += vx
+y += vy
+if x < 2 || x > 125
+ vx = 0 - vx
+end
+if y < 10
+ vy = 0 - vy
+end
+if y > 54 && x > p && x < p + 24
+ vy = 0 - vy
+ score += 1
+end
+if y > 63
+ over
+end
+disc x, y, 2
+fill p, 58, 24, 4
+text 0, 0, "PONG"
+num 90, 0, score

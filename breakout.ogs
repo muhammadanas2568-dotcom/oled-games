@@ -1,0 +1,45 @@
+title Brick Breaker
+fps 25
+init
+p = 52
+x = 64
+y = 35
+vx = 2
+vy = -2
+frame
+cls
+if jx < 0
+ p -= 4
+end
+if jx > 0
+ p += 4
+end
+if p < 0
+ p = 0
+end
+if p > 104
+ p = 104
+end
+i = 0
+while i < 8
+ rect i * 16, 10, 14, 5
+ i += 1
+end
+x += vx
+y += vy
+if x < 2 || x > 125
+ vx = 0 - vx
+end
+if y < 19
+ vy = 0 - vy
+ score += 1
+end
+if y > 51 && x > p && x < p + 20
+ vy = 0 - vy
+end
+if y > 63
+ over
+end
+disc x, y, 2
+fill p, 56, 20, 4
+num 0, 0, score

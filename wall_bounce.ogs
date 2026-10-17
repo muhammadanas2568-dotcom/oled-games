@@ -1,0 +1,26 @@
+title Wall Bounce
+fps 25
+init
+x = 60
+y = 30
+vx = 2
+vy = 1
+frame
+cls
+x += vx
+y += vy
+if x < 3 || x > 124
+ vx = 0 - vx
+ score += 1
+end
+if y < 10 || y > 60
+ vy = 0 - vy
+end
+if btn
+ vx = 0 - vx
+ vy = 0 - vy
+end
+rect 0, 8, 127, 55
+disc x, y, 3
+text 0, 0, "BOUNCE"
+num 90, 0, score

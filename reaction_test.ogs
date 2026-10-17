@@ -1,0 +1,25 @@
+title Reaction Test
+fps 15
+init
+x = 50
+y = 25
+wait = 30
+ready = 0
+frame
+cls
+if wait > 0
+ wait -= 1
+ text 24, 24, "WAIT..."
+else
+ ready = 1
+ disc x, y, 7
+ text 12, 0, "PRESS SW!"
+ if btn
+  score += 1
+  x = rnd(100) + 12
+  y = rnd(40) + 12
+  wait = 20 + rnd(35)
+  ready = 0
+ end
+end
+num 0, 0, score
