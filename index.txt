@@ -1,0 +1,20 @@
+# OLED Arcade homebrew CHIP-8 pack
+# Format: title|filename.ch8|left-right-action keys
+# Controls: VRx left/right = CHIP-8 keys 4/6; SW = key 5/action.
+# Original homebrew prototypes; not commercial game ROMs.
+Pac-Man Mini (homebrew)|pacman_mini.ch8|465
+Block Runner|block_runner.ch8|465
+Space Pilot|space_pilot.ch8|465
+Maze Walker|maze_walker.ch8|465
+Breakout Catch|breakout_sprite.ch8|465
+Invader Chase|invader_chase.ch8|465
+Gem Collector|gem_collector.ch8|465
+Robot Escape|robot_escape.ch8|465
+Ghost Runner|ghost_runner.ch8|465
+Pixel Hero|pixel_hero.ch8|465
+Star Hopper|star_hopper.ch8|465
+Alien Dodge|alien_dodge.ch8|465
+Catch |catch.ogs
+pixel mario |pixel_run.ogs
+pogo |pogo.ogs
+reaction |reaction.ogs
