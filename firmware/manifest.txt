@@ -1,0 +1,1 @@
+ESP8266-12E|1.4.1|https://raw.githubusercontent.com/muhammadanas2568-dotcom/oled-games/main/firmware/firmware.bin
