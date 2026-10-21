@@ -1,1 +1,0 @@
-ESP8266-12E|1.4.1|https://raw.githubusercontent.com/muhammadanas2568-dotcom/oled-games/main/firmware/AOS%20mini%201.4.1%20.bin
