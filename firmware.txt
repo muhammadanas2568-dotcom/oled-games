@@ -1,1 +1,1 @@
-esg54|ESP8266-12E|2.2|aos_esg54_2.2.bin
+esg54|ESP8266-12E|2.3|AOS_2.3.bin
